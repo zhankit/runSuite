@@ -20,6 +20,11 @@ test3
 ...
 ```
 
+The test will use the file **test1.in** to hold its input, and **test2.out** to store its expected output. It will do the same jobs for the tests listed in suite-file.  
+
+The sample run of runSuite is as follows:
+`./runSuite suite.txt ./myprogram`
+
 ## Output
 If the output of a given test case differs from the expected output, print the following to
 standard output (assuming test test2 failed):
