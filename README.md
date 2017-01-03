@@ -1,37 +1,70 @@
+
+## runSuite
+Contributer: Ding Zhan Chia
+
+## Description
+It is a Bash script for program testing. As to fix bugs and refine code, it will be very often to rerun old tests, to check that existing bugs have been fixed, and to ensure that no new bugs have been introduced. 
+
+## How to use it
+
+The command is as followed: 
+`./runSuite suite-file program`
+
+
+## Output
+If the output of a given test case differs from the expected output, print the following to
+standard output (assuming test test2 failed):
+```
+Test failed: test2
+Input:
+(contents of test2.in)
+Expected:
+(contents of test2.out)
+Actual:
+(contents of the actual program output)
+```
+with the (contents ...) lines replaced with actual file contents, as described.
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/zhankit/runSuite/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+## runSuite
+Contributer: Ding Zhan Chia
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Description
+It is a Bash script for program testing. As to fix bugs and refine code, it will be very often to rerun old tests, to check that existing bugs have been fixed, and to ensure that no new bugs have been introduced. 
 
-```markdown
-Syntax highlighted code block
+## How to use it
 
-# Header 1
-## Header 2
-### Header 3
+The command is as followed: 
+`./runSuite suite-file program`
 
-- Bulleted
-- List
+The argument suite-file is the name of a file containing a list of filename stems (more details below), and the argument program is the name of the program to be run.
 
-1. Numbered
-2. List
+The **suite-file** contains a list of stems, from which we construct the names of les containing the input and expected output of each test. Stems will not contain spaces. For example, suppose our suite le is called suite.txt and contains the following entries:
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+test1
+test2
+test3
+...
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Output
+If the output of a given test case differs from the expected output, print the following to
+standard output (assuming test test2 failed):
+```
+Test failed: test2
+Input:
+(contents of test2.in)
+Expected:
+(contents of test2.out)
+Actual:
+(contents of the actual program output)
+```
+with the (contents ...) lines replaced with actual file contents, as described.
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/zhankit/runSuite/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
