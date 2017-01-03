@@ -1,0 +1,68 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+  echo "It has less than 2 arguments" 1>&2
+	exit 
+fi
+
+if [ ! -e $1 ]; then
+        echo "$1 does not exist!" 1>&2
+        exit 
+fi
+if [ ! -e $2 ]; then
+        echo "$2 does not exist!" 1>&2
+        exit 
+fi
+
+while read line
+do
+	#.in file cant be read
+	if [ ! -r "${line}.in" ] ; then
+		echo " "${line}.in" file is not readable!" 1>&2 
+		exit 
+	fi
+	
+	#.in file does not exist
+	if [ ! -e "${line}.in" ] ; then
+                echo " "${line}.in" file does not exist!" 1>&2
+                exit 
+        fi
+
+	#.out file cant be read
+	if [ ! -r "${line}.out" ] ; then
+		echo " "${line}.out" file is not readable!" 1>&2
+		exit 
+	fi
+
+	#.out file does not exist
+	if [ ! -e "${line}.out" ] ; then
+		echo " "${line}.out" file doesn't exist!" 1>&2
+		exit 
+	fi
+
+	TMPFILE=`mktemp`
+	temp=`basename $line`
+	
+	if [ -e "${line}.args" ]; then
+		./$2 `cat "${line}.args"` < ${line}.in > ${TMPFILE}
+	else
+		./$2 < ${line}.in > ${TMPFILE}
+	fi
+
+	diff $TMPFILE "${line}.out" > /tmp/diff
+	
+	result=$?
+	if [ $result == 1 ]; then
+   		echo "Test failed: "${line}""
+		echo "Input:"
+		cat "${line}.in"
+		echo "Expected:"
+		cat "${line}.out"
+		echo "Actual:"
+		cat ${TMPFILE}
+	fi
+
+	rm /tmp/diff
+	rm $TMPFILE
+
+done < "$1"
